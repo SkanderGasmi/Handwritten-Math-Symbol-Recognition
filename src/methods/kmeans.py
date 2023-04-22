@@ -84,3 +84,27 @@ class KMeans(object):
         pred_labels = self.cluster_labels[closest_cluster]
         
         return pred_labels
+    
+    def score(self, test_data, test_labels):
+        """
+        Calculate the accuracy of the KMeans algorithm.
+
+        Arguments:
+            test_data (np.array): test data of shape (N,D)
+            test_labels (np.array): test labels of shape (N,)
+        Returns:
+            accuracy (float): the accuracy of the KMeans algorithm.
+        """
+        predicted_labels = self.predict(test_data)
+        accuracy = np.mean(predicted_labels == test_labels)
+        return accuracy
+
+
+
+
+
+    
+    def set_params(self, **params):
+        self.K = int(params.get('K', self.K))
+        self.max_iters = int(params.get('max_iters', self.max_iters))
+
